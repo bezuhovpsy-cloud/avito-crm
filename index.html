@@ -2,97 +2,112 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>CRM для Авито — управление клиентами прямо в чатах</title>
-  <meta name="description" content="CRM для Авито: статусы, заметки, теги и напоминания прямо в диалогах. Увеличь продажи и не теряй клиентов.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <title>Avito CRM Tagger — CRM для Авито</title>
+  <meta name="description" content="Avito CRM Tagger — красивое и удобное расширение для Авито: статусы, теги, заметки и напоминания для работы с клиентами.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Avito CRM Tagger — CRM для Авито">
+  <meta property="og:description" content="Расширение для Авито: статусы, теги, заметки и напоминания в одном месте.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Avito CRM Tagger","applicationCategory":"BusinessApplication","operatingSystem":"Chrome","description":"Расширение для Авито с тегами, статусами, заметками и напоминаниями."}</script>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-    h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
-    p {
-      color: #cbd5e1;
-      line-height: 1.6;
-    }
-    .btn {
-      display: inline-block;
-      padding: 14px 22px;
-      background: #6366f1;
-      color: white;
-      border-radius: 10px;
-      text-decoration: none;
-      margin-top: 20px;
-      font-weight: bold;
-    }
-    .section {
-      margin-top: 60px;
-    }
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 15px;
-    }
+    :root{--bg:#f4f1ea;--paper:#fffaf3;--text:#1f2937;--muted:#6b7280;--accent:#8b5cf6;--accent2:#6d28d9;--line:#e7dfd2;--gold:#c59d5f}
+    *{box-sizing:border-box} body{margin:0;font-family:Georgia, 'Times New Roman', serif;background:linear-gradient(180deg,#f7f3ec 0%, #efe7db 100%);color:var(--text)}
+    .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 70px}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 0 30px}
+    .brand{font-family:Arial,sans-serif;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#4b5563;font-size:13px}
+    .nav a{font-family:Arial,sans-serif;color:#4b5563;text-decoration:none;margin-left:18px;font-size:14px}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:42px 0 22px}
+    .hero h1{font-size:clamp(38px,5vw,64px);line-height:1.02;margin:0 0 18px;color:#111827;max-width:760px}
+    .hero p{font-family:Arial,sans-serif;font-size:18px;line-height:1.7;color:var(--muted);max-width:680px;margin:0}
+    .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+    .btn{display:inline-block;padding:14px 22px;border-radius:999px;text-decoration:none;font-family:Arial,sans-serif;font-weight:700;border:1px solid transparent}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 14px 30px rgba(109,40,217,.18)}
+    .btn.secondary{background:transparent;color:#374151;border-color:var(--line)}
+    .panel{background:rgba(255,255,255,.65);backdrop-filter:blur(8px);border:1px solid rgba(231,223,210,.9);border-radius:28px;padding:26px;box-shadow:0 20px 50px rgba(31,41,55,.08)}
+    .stat{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.stat div{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px}
+    .k{font-family:Arial,sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#8a7c67}.v{font-size:22px;margin-top:8px;font-weight:700}
+    .section{margin-top:72px}.section h2{font-size:36px;margin:0 0 14px;color:#111827}.section p.lead{font-family:Arial,sans-serif;font-size:17px;color:var(--muted);max-width:820px;margin:0}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:24px}.card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 10px 28px rgba(31,41,55,.04)}
+    .card h3{margin:0 0 10px;font-size:20px}.card p{font-family:Arial,sans-serif;color:var(--muted);margin:0;line-height:1.7}
+    .steps{display:grid;gap:12px;margin-top:22px}.step{background:rgba(255,250,243,.8);border:1px solid var(--line);padding:18px 20px;border-radius:18px;font-family:Arial,sans-serif}
+    .faq{display:grid;gap:14px;margin-top:22px}.faq-item{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px 20px}.faq-item strong{display:block;margin-bottom:8px;font-family:Arial,sans-serif}
+    .cta{margin-top:72px;background:linear-gradient(135deg,#2b1d4a,#4c1d95);color:#fff;border-radius:30px;padding:34px 28px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}.cta p{margin:0;max-width:700px;font-family:Arial,sans-serif;color:#e9e5f8}
+    footer{margin-top:40px;padding-top:22px;border-top:1px solid #dccfb9;color:#6b7280;font-family:Arial,sans-serif;font-size:14px}
+    a.inline{color:#6d28d9;text-decoration:none}
+    @media (max-width:900px){.hero{grid-template-columns:1fr}.nav{display:none}.section h2{font-size:30px}.cta{padding:26px 20px}}
   </style>
 </head>
-
 <body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">Avito CRM Tagger</div>
+      <div class="nav"><a href="#features">Возможности</a><a href="#how">Как установить</a><a href="#faq">FAQ</a></div>
+    </div>
 
-<div class="container">
+    <section class="hero">
+      <div>
+        <h1>CRM для Авито в красивом, классическом стиле</h1>
+        <p>Avito CRM Tagger — аккуратное расширение для Авито, которое помогает вести клиентов, ставить статусы, добавлять теги, заметки и напоминания прямо в диалогах.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://chromewebstore.google.com/detail/avito-crm-tagger/ihjilejmjlkeiipkcogfnhmmcpcpiojl?hl=ru&utm_source=ext_sidebar" target="_blank" rel="noopener">Установить расширение</a>
+          <a class="btn secondary" href="#features">Посмотреть функции</a>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="stat">
+          <div><div class="k">Для кого</div><div class="v">Продавцы Авито</div></div>
+          <div><div class="k">Что делает</div><div class="v">CRM в чатах</div></div>
+          <div><div class="k">Польза</div><div class="v">Не теряешь лиды</div></div>
+          <div><div class="k">Формат</div><div class="v">Chrome extension</div></div>
+        </div>
+      </div>
+    </section>
 
-  <h1>CRM для Авито</h1>
-  <p>Управляй клиентами прямо в диалогах Авито: статусы, заметки, теги и напоминания.</p>
+    <section class="section">
+      <h2>Что это такое</h2>
+      <p class="lead">Это расширение для Авито, которое превращает обычные сообщения в удобную систему работы с клиентами. Ты можешь быстро отмечать статус диалога, добавлять заметки и держать продажи под контролем.</p>
+    </section>
 
-  <a href="#" class="btn">Скачать плагин</a>
+    <section class="section" id="features">
+      <h2>Возможности</h2>
+      <div class="cards">
+        <div class="card"><h3>Статусы клиентов</h3><p>Новый, думает, на связи, оплатил — всё под контролем.</p></div>
+        <div class="card"><h3>Теги и сегментация</h3><p>Быстро дели клиентов на группы и находи нужные диалоги.</p></div>
+        <div class="card"><h3>Заметки</h3><p>Сохраняй важные детали прямо рядом с перепиской.</p></div>
+        <div class="card"><h3>Напоминания</h3><p>Не забывай возвращаться к клиентам и доводить сделки.</p></div>
+      </div>
+    </section>
 
-  <div class="section">
-    <h2>Что это такое?</h2>
-    <p>
-      Это расширение превращает Авито в полноценную CRM систему.
-      Ты больше не теряешь клиентов и контролируешь продажи.
-    </p>
+    <section class="section" id="how">
+      <h2>Как установить</h2>
+      <div class="steps">
+        <div class="step">1. Открой страницу расширения в Chrome Web Store.</div>
+        <div class="step">2. Нажми «Установить» и добавь расширение в браузер.</div>
+        <div class="step">3. Перейди в Авито и начни пользоваться в диалогах.</div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <h2>FAQ</h2>
+      <div class="faq">
+        <div class="faq-item"><strong>Это бесплатно?</strong><span>Укажи здесь свою модель: бесплатная версия, пробный период или платные функции.</span></div>
+        <div class="faq-item"><strong>Для чего подходит?</strong><span>Для продавцов, менеджеров и всех, кто работает с клиентами через Авито.</span></div>
+        <div class="faq-item"><strong>Есть ли SEO?</strong><span>Да, сайт использует ключи: CRM для Авито, расширение для Авито, плагин для Авито.</span></div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div>
+        <h2 style="margin:0 0 10px;font-size:32px;">Сделай Авито удобнее</h2>
+        <p>Классический сайт, понятный текст и аккуратный дизайн помогают лучше продавать и выглядеть солидно.</p>
+      </div>
+      <a class="btn primary" href="https://chromewebstore.google.com/detail/avito-crm-tagger/ihjilejmjlkeiipkcogfnhmmcpcpiojl?hl=ru&utm_source=ext_sidebar" target="_blank" rel="noopener">Открыть в Chrome Web Store</a>
+    </section>
+
+    <footer>
+      Avito CRM Tagger — <a class="inline" href="https://chromewebstore.google.com/detail/avito-crm-tagger/ihjilejmjlkeiipkcogfnhmmcpcpiojl?hl=ru&utm_source=ext_sidebar" target="_blank" rel="noopener">расширение для Авито</a>, CRM для Авито и инструмент для работы с клиентами.
+    </footer>
   </div>
-
-  <div class="section">
-    <h2>Возможности</h2>
-
-    <div class="card">📊 Статусы клиентов (новый, думает, оплатил)</div>
-    <div class="card">📝 Заметки по каждому клиенту</div>
-    <div class="card">🏷️ Теги и сегментация</div>
-    <div class="card">⏰ Напоминания (follow-up)</div>
-    <div class="card">⚡ Быстрые ответы</div>
-  </div>
-
-  <div class="section">
-    <h2>Почему это важно?</h2>
-    <p>
-      Большинство продавцов на Авито теряют до 50% клиентов,
-      потому что не ведут учет. CRM решает эту проблему.
-    </p>
-  </div>
-
-  <div class="section">
-    <h2>Как установить</h2>
-    <p>
-      1. Скачай расширение<br>
-      2. Установи в браузер<br>
-      3. Открой Авито и начни использовать
-    </p>
-  </div>
-
-</div>
-
 </body>
 </html>
